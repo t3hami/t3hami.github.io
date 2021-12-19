@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - Tag - _T3hami&#39;s_Blog_</title>
+        <link>http://t3hami.github.io/tags/</link>
+        <description>Tags - Tag - _T3hami&#39;s_Blog_</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>t3hami@gmail.com (Muhammad Tehami)</managingEditor>
+            <webMaster>t3hami@gmail.com (Muhammad Tehami)</webMaster><lastBuildDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</lastBuildDate><atom:link href="http://t3hami.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Automation</title>
+    <link>http://t3hami.github.io/tags/automation/</link>
+    <pubDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/automation/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>CICD</title>
+    <link>http://t3hami.github.io/tags/cicd/</link>
+    <pubDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/cicd/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Jenkins</title>
+    <link>http://t3hami.github.io/tags/jenkins/</link>
+    <pubDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/jenkins/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Kubernnetes</title>
+    <link>http://t3hami.github.io/tags/kubernnetes/</link>
+    <pubDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/kubernnetes/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Minikube</title>
+    <link>http://t3hami.github.io/tags/minikube/</link>
+    <pubDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/minikube/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Autoscaling</title>
+    <link>http://t3hami.github.io/tags/autoscaling/</link>
+    <pubDate>Tue, 07 Dec 2021 23:20:15 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/autoscaling/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Cloud Computing</title>
+    <link>http://t3hami.github.io/tags/cloud-computing/</link>
+    <pubDate>Tue, 07 Dec 2021 23:20:15 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/cloud-computing/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Metrics Server</title>
+    <link>http://t3hami.github.io/tags/metrics-server/</link>
+    <pubDate>Tue, 07 Dec 2021 23:20:15 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/metrics-server/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Nginx</title>
+    <link>http://t3hami.github.io/tags/nginx/</link>
+    <pubDate>Tue, 07 Dec 2021 23:20:15 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/nginx/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>DevOps</title>
+    <link>http://t3hami.github.io/tags/devops/</link>
+    <pubDate>Sat, 27 Feb 2021 01:48:27 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/tags/devops/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Git - Tag - _T3hami&#39;s_Blog_</title>
+        <link>http://t3hami.github.io/tags/git/</link>
+        <description>Git - Tag - _T3hami&#39;s_Blog_</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>t3hami@gmail.com (Muhammad Tehami)</managingEditor>
+            <webMaster>t3hami@gmail.com (Muhammad Tehami)</webMaster><lastBuildDate>Sat, 27 Feb 2021 01:48:27 &#43;0500</lastBuildDate><atom:link href="http://t3hami.github.io/tags/git/" rel="self" type="application/rss+xml" /><item>
+    <title>Signing Git Commits with GPG</title>
+    <link>http://t3hami.github.io/posts/post_2/</link>
+    <pubDate>Sat, 27 Feb 2021 01:48:27 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/posts/post_2/</guid>
+    <description><![CDATA[Overview Git Git is a crucial part of every developer’s life. We have come across from the cumbersome and hectic usage of bad old days versioning practice to a centralized and easy to collaborate process with git.
+As the versioning became easier and collaboration is on our fingertips, there comes the issue of authenticity of the work contributed by individuals.
+The Donkey in Lion’s Skin We all have heard the The Donkey in Lion’s Skin story.]]></description>
+</item></channel>
+</rss>

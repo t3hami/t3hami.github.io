@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Signing Git Commits with GPG - _T3hami&#39;s_Blog_</title><meta name="Description" content=""><meta property="og:title" content="Signing Git Commits with GPG" />
+<meta property="og:description" content="Overview Git Git is a crucial part of every developer’s life. We have come across from the cumbersome and hectic usage of bad old days versioning practice to a centralized and easy to collaborate process with git.
+As the versioning became easier and collaboration is on our fingertips, there comes the issue of authenticity of the work contributed by individuals.
+The Donkey in Lion’s Skin We all have heard the The Donkey in Lion’s Skin story." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://t3hami.github.io/posts/post_2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-02-27T01:48:27+05:00" />
+<meta property="article:modified_time" content="2021-02-27T01:48:27+05:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Signing Git Commits with GPG"/>
+<meta name="twitter:description" content="Overview Git Git is a crucial part of every developer’s life. We have come across from the cumbersome and hectic usage of bad old days versioning practice to a centralized and easy to collaborate process with git.
+As the versioning became easier and collaboration is on our fingertips, there comes the issue of authenticity of the work contributed by individuals.
+The Donkey in Lion’s Skin We all have heard the The Donkey in Lion’s Skin story."/>
+<meta name="application-name" content="_T3hami&#39;s_Blog_">
+<meta name="apple-mobile-web-app-title" content="_T3hami&#39;s_Blog_"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://t3hami.github.io/posts/post_2/" /><link rel="prev" href="http://t3hami.github.io/posts/post_1/" /><link rel="next" href="http://t3hami.github.io/posts/post_3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Signing Git Commits with GPG",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/t3hami.github.io\/posts\/post_2\/"
+        },"genre": "posts","keywords": "GPG, Git, Security, Github, DevOps, GitOps","wordcount":  932 ,
+        "url": "http:\/\/t3hami.github.io\/posts\/post_2\/","datePublished": "2021-02-27T01:48:27+05:00","dateModified": "2021-02-27T01:48:27+05:00","publisher": {
+            "@type": "Organization",
+            "name": "Muhammad Tehami"},"author": {
+                "@type": "Person",
+                "name": "Muhammad Tehami"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_T3hami&#39;s_Blog_">_T3hami&#39;s_Blog_</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_T3hami&#39;s_Blog_">_T3hami&#39;s_Blog_</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Signing Git Commits with GPG</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/t3hami" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Muhammad Tehami</a></span>&nbsp;<span class="post-category">included in <a href="/categories/security/"><i class="far fa-folder fa-fw"></i>Security</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-27">2021-02-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;932 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#git">Git</a></li>
+        <li><a href="#the-donkey-in-lions-skin">The Donkey in Lion’s Skin</a></li>
+        <li><a href="#public-key-cryptography">Public-key cryptography</a></li>
+        <li><a href="#pgp-openpgp-gpg">PGP, OpenPGP, GPG</a></li>
+      </ul>
+    </li>
+    <li><a href="#back-to-the-terminal">Back To The Terminal</a>
+      <ul>
+        <li><a href="#install-gpg">Install GPG</a></li>
+        <li><a href="#creating-gpg-keypair">Creating GPG keypair</a></li>
+        <li><a href="#sign-git-commit">Sign git commit</a></li>
+        <li><a href="#distributing-public-gpg-key">Distributing public GPG key</a></li>
+      </ul>
+    </li>
+    <li><a href="#caveat">Caveat</a>
+      <ul>
+        <li><a href="#now-what">Now what?</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="overview">Overview</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_2/git-gpg.jpeg"
+        data-srcset="/images/posts/post_2/git-gpg.jpeg, /images/posts/post_2/git-gpg.jpeg 1.5x, /images/posts/post_2/git-gpg.jpeg 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_2/git-gpg.jpeg"
+        title="Git GPG" /></p>
+<h3 id="git">Git</h3>
+<p>Git is a crucial part of every developer’s life. We have come across from the cumbersome and hectic usage of bad old days versioning practice to a centralized and easy to collaborate process with git.</p>
+<p>As the versioning became easier and collaboration is on our fingertips, there comes the issue of authenticity of the work contributed by individuals.</p>
+<h3 id="the-donkey-in-lions-skin">The Donkey in Lion’s Skin</h3>
+<p>We all have heard the The Donkey in Lion’s Skin story. The TLDR is a donkey dressed itself in a lion’s skin. Wherever the donkey went, the other animals and villagers feared him. The villagers and other animals thought that he was a real lion. After some time he became bold. Finally one day some people heard him braying. The people ran after him with sticks, and beat him to death. Hence, the poor donkey paid the price for his foolishness.</p>
+<p>But what does the donkey story have to do with git? In git, a single contribution is called a commit which holds all the meta data regarding the work being done and by whom. The user meta data which is name and email address are associated with every commit. The problem with this is that anyone can add any user and email address to commit even if the email doesn’t belong to that user.</p>
+<h3 id="public-key-cryptography">Public-key cryptography</h3>
+<p>A type of cryptography which uses a pair of keys, a public key and a private key; the two keys have the related in a way that, given the public key, it is computationally infeasible to derive the private key. For connection establishment, public-key cryptography enables different parties to communicate securely without having prior access to a secret key (unlike symmetric key cryptography which only involves one key) that is shared, by using one or more pairs (public key and private key) of cryptographic keys. There are lot of tools which implement public key cryptography. One of them is GPG.</p>
+<h3 id="pgp-openpgp-gpg">PGP, OpenPGP, GPG</h3>
+<p>Back in 1990s Phil Zimmermann created a data encryption and decryption computer program called Pretty Good Privacy (PGP) which is currently owned by software security company Symantec. Soon PGP become the de-facto standard in e-mail communication. PGP is a commercial product, and as the opensource software boomed the need for the opensource alternatives to the PGP became inevitable. This gave birth to OpenPGP which is an open source standard that allows PGP to be used in software that is typically free to the public. The term “Open PGP” is often applied to tools, features, or solutions that support open-source PGP encryption technology. GPG is an implementation of the Open PGP standard. The GPG, or GnuPG, stands for GNU Privacy Guard.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_2/cut-the-crap.gif"
+        data-srcset="/images/posts/post_2/cut-the-crap.gif, /images/posts/post_2/cut-the-crap.gif 1.5x, /images/posts/post_2/cut-the-crap.gif 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_2/cut-the-crap.gif"
+        title="Cut the crap meme" /></p>
+<h2 id="back-to-the-terminal">Back To The Terminal</h2>
+<h3 id="install-gpg">Install GPG</h3>
+<p>Install GPG depending on the OS you are using: <a href="https://gnupg.org/download/" target="_blank" rel="noopener noreffer">https://gnupg.org/download/</a></p>
+<p>After the installation, verify that you have it working:</p>
+<pre tabindex="0"><code>gpg --version
+</code></pre><h3 id="creating-gpg-keypair">Creating GPG keypair</h3>
+<pre tabindex="0"><code>gpg --full-generate-key
+</code></pre><p>Now an interactive console will ask some information.</p>
+<p>Use option one (1) RSA and RSA (default), give key size (ideally 4096), set expiry date for example 1y, give your real name and email address and comment (optional).</p>
+<p>After this GPG will perform some math behind the key generation which uses some big random prime numbers. It is a good idea to perform some other action (type on the keyboard, move the mouse, utilize the disks) during the prime generation; this gives the random number generator a better chance to gain enough entropy.</p>
+<p>I use dd(copy files) and rngd(a random number generator) on linux. You can use any program which does a lot of cpu processing and uses hard drive (Chrome included :D). Use following if you are on server which can’t get enough entropy.</p>
+<pre tabindex="0"><code>sudo yum install rng-tools
+sudo systemctl start rngd
+sudo dd if=/dev/sda of=/dev/zero
+</code></pre><p>Now we have our gpg keypair ready to use. Verify that the key is created successfully:</p>
+<pre tabindex="0"><code>gpg --list-keys
+</code></pre><h3 id="sign-git-commit">Sign git commit</h3>
+<p>Make sure your name and email in git configuration is same as you have in the gpg key:</p>
+<pre tabindex="0"><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;Your Email&quot;
+</code></pre><p>Create a directory and initialize git:</p>
+<pre tabindex="0"><code>mkdir repo
+cd repo
+git init
+</code></pre><p>Stage a file:</p>
+<pre tabindex="0"><code>touch file
+git add file
+</code></pre><p>Now create a signed commit:</p>
+<pre tabindex="0"><code>git commit -S -m &quot;My signed commit&quot; 
+</code></pre><p>Check the signed commit:</p>
+<pre tabindex="0"><code>git log --show-signature
+</code></pre><p>You successfully signed commit with your private GPG key.</p>
+<h3 id="distributing-public-gpg-key">Distributing public GPG key</h3>
+<p>It’s time to distribute your public key so that others will know that the commit was actually signed by your private key.</p>
+<p>Get your public key:</p>
+<pre tabindex="0"><code>gpg --export --armor &quot;Your Email&quot;
+</code></pre><p>Copy the output and go to:</p>
+<p>Github -&gt; settings -&gt; SSH and GPG keys.</p>
+<p>Click on New GPG Keys button and paste you public key. Click Add GPG key button.</p>
+<p>After doing above when you push the code to Github it will show a verified badge against your commit, which shows that this key was actually signed by the corresponding private key of the given public key in Github.</p>
+<h2 id="caveat">Caveat</h2>
+<p>When you don’t provide the -S flag in git commit it’ll not sign the commit. If you want to sign every commit without providing the -S flag explicitly, then modify your global git config file as follows:</p>
+<p>Open git config file from ~/.gitconfig and add following lines in it.</p>
+<pre tabindex="0"><code>[commit]
+        gpgsign = true
+[tag]
+        gpgsign = true
+</code></pre><p>You can now use usual git commit to create signed commits.</p>
+<pre tabindex="0"><code>git commit -m &quot;Signed commit without -S&quot;
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_2/not-that-hard.gif"
+        data-srcset="/images/posts/post_2/not-that-hard.gif, /images/posts/post_2/not-that-hard.gif 1.5x, /images/posts/post_2/not-that-hard.gif 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_2/not-that-hard.gif"
+        title="Cartoon meme" /></p>
+<h3 id="now-what">Now what?</h3>
+<p>Remember that donkey in lion’s skin. Well we don’t have to worry now :D</p>
+<p>Thanks for following along, take a look at GPG cheat sheet I’ve created:</p>
+<p><a href="https://github.com/t3hami/GPG-cheat-sheet.git" target="_blank" rel="noopener noreffer">https://github.com/t3hami/GPG-cheat-sheet.git</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-02-27</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gpg/">GPG</a>,&nbsp;<a href="/tags/git/">Git</a>,&nbsp;<a href="/tags/security/">Security</a>,&nbsp;<a href="/tags/github/">Github</a>,&nbsp;<a href="/tags/devops/">DevOps</a>,&nbsp;<a href="/tags/gitops/">GitOps</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/post_1/" class="prev" rel="prev" title="React.js DevOps Ready Application"><i class="fas fa-angle-left fa-fw"></i>React.js DevOps Ready Application</a>
+            <a href="/posts/post_3/" class="next" rel="next" title="Understand Autoscaling Applications In Kubernetes Before Next Peak Hours">Understand Autoscaling Applications In Kubernetes Before Next Peak Hours<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/t3hami" target="_blank">Muhammad Tehami</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

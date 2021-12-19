@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Minikube - Tag - _T3hami&#39;s_Blog_</title>
+        <link>http://t3hami.github.io/tags/minikube/</link>
+        <description>Minikube - Tag - _T3hami&#39;s_Blog_</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>t3hami@gmail.com (Muhammad Tehami)</managingEditor>
+            <webMaster>t3hami@gmail.com (Muhammad Tehami)</webMaster><lastBuildDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</lastBuildDate><atom:link href="http://t3hami.github.io/tags/minikube/" rel="self" type="application/rss+xml" /><item>
+    <title>Jenkins On-Demand Agents</title>
+    <link>http://t3hami.github.io/posts/post_4/</link>
+    <pubDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/posts/post_4/</guid>
+    <description><![CDATA[Jenkins Jenkins is a server for automation that is free and open source. By automating the software development process, enterprises can save time and money. Jenkins is a tool that manages and controls software delivery processes across the whole lifecycle, including build, document, test, package, stage, deployment, static code analysis, and more.
+A typical Jenkins running in any organization looks like the above diagram. But there are multiple problems with the above architecture.]]></description>
+</item></channel>
+</rss>

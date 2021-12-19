@@ -1,0 +1,42 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>_T3hami&#39;s_Blog_</title>
+        <link>http://t3hami.github.io/</link>
+        <description>_T3hami&#39;s_Blog_</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>t3hami@gmail.com (Muhammad Tehami)</managingEditor>
+            <webMaster>t3hami@gmail.com (Muhammad Tehami)</webMaster><lastBuildDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</lastBuildDate>
+            <atom:link href="http://t3hami.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Jenkins On-Demand Agents</title>
+    <link>http://t3hami.github.io/posts/post_4/</link>
+    <pubDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/posts/post_4/</guid>
+    <description><![CDATA[Jenkins Jenkins is a server for automation that is free and open source. By automating the software development process, enterprises can save time and money. Jenkins is a tool that manages and controls software delivery processes across the whole lifecycle, including build, document, test, package, stage, deployment, static code analysis, and more.
+A typical Jenkins running in any organization looks like the above diagram. But there are multiple problems with the above architecture.]]></description>
+</item><item>
+    <title>Understand Autoscaling Applications In Kubernetes Before Next Peak Hours</title>
+    <link>http://t3hami.github.io/posts/post_3/</link>
+    <pubDate>Tue, 07 Dec 2021 23:20:15 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/posts/post_3/</guid>
+    <description><![CDATA[What is Autoscaling? Automatic scaling, is a cloud computing strategy that dynamically modifies the amount of computational resources required for an application. Normally measured by the number of active servers based on the load on the farm. For example, the number of servers hosting a web application can automatically increase or decrease based on the number of active users on your site. Because such metrics can fluctuate substantially during the day, and servers are a limited resource that cost money to run even when inactive, there is often an incentive to run “just enough” servers to support the current demand while still being able to handle sudden and large surges in activity.]]></description>
+</item><item>
+    <title>Signing Git Commits with GPG</title>
+    <link>http://t3hami.github.io/posts/post_2/</link>
+    <pubDate>Sat, 27 Feb 2021 01:48:27 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/posts/post_2/</guid>
+    <description><![CDATA[Overview Git Git is a crucial part of every developer’s life. We have come across from the cumbersome and hectic usage of bad old days versioning practice to a centralized and easy to collaborate process with git.
+As the versioning became easier and collaboration is on our fingertips, there comes the issue of authenticity of the work contributed by individuals.
+The Donkey in Lion’s Skin We all have heard the The Donkey in Lion’s Skin story.]]></description>
+</item><item>
+    <title>React.js DevOps Ready Application</title>
+    <link>http://t3hami.github.io/posts/post_1/</link>
+    <pubDate>Sun, 08 Nov 2020 00:08:37 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/posts/post_1/</guid>
+    <description><![CDATA[Overview Shipping your application in containers is a new norm and CI/CD is also a must have in today’s development. Here I’ve created a React.js DevOps ready application for reference of those who are new to Containers and CI/CD.
+Docker Docker is for managing container. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and deploy it as one package.]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Jenkins On-Demand Agents - _T3hami&#39;s_Blog_</title><meta name="Description" content=""><meta property="og:title" content="Jenkins On-Demand Agents" />
+<meta property="og:description" content="Jenkins Jenkins is a server for automation that is free and open source. By automating the software development process, enterprises can save time and money. Jenkins is a tool that manages and controls software delivery processes across the whole lifecycle, including build, document, test, package, stage, deployment, static code analysis, and more.
+A typical Jenkins running in any organization looks like the above diagram. But there are multiple problems with the above architecture." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://t3hami.github.io/posts/post_4/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-19T01:14:26+05:00" />
+<meta property="article:modified_time" content="2021-12-19T01:14:26+05:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jenkins On-Demand Agents"/>
+<meta name="twitter:description" content="Jenkins Jenkins is a server for automation that is free and open source. By automating the software development process, enterprises can save time and money. Jenkins is a tool that manages and controls software delivery processes across the whole lifecycle, including build, document, test, package, stage, deployment, static code analysis, and more.
+A typical Jenkins running in any organization looks like the above diagram. But there are multiple problems with the above architecture."/>
+<meta name="application-name" content="_T3hami&#39;s_Blog_">
+<meta name="apple-mobile-web-app-title" content="_T3hami&#39;s_Blog_"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://t3hami.github.io/posts/post_4/" /><link rel="prev" href="http://t3hami.github.io/posts/post_3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Jenkins On-Demand Agents",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/t3hami.github.io\/posts\/post_4\/"
+        },"genre": "posts","keywords": "Jenkins, Kubernnetes, CICD, Minikube, Automation","wordcount":  765 ,
+        "url": "http:\/\/t3hami.github.io\/posts\/post_4\/","datePublished": "2021-12-19T01:14:26+05:00","dateModified": "2021-12-19T01:14:26+05:00","publisher": {
+            "@type": "Organization",
+            "name": "Muhammad Tehami"},"author": {
+                "@type": "Person",
+                "name": "Muhammad Tehami"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_T3hami&#39;s_Blog_">_T3hami&#39;s_Blog_</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_T3hami&#39;s_Blog_">_T3hami&#39;s_Blog_</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Jenkins On-Demand Agents</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/t3hami" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Muhammad Tehami</a></span>&nbsp;<span class="post-category">included in <a href="/categories/devops/"><i class="far fa-folder fa-fw"></i>DevOps</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-19">2021-12-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;765 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#jenkins">Jenkins</a>
+      <ul>
+        <li><a href="#what-do-you-need">What Do You Need?</a></li>
+      </ul>
+    </li>
+    <li><a href="#setting-up-environment">Setting Up Environment</a>
+      <ul>
+        <li><a href="#setup-jenkins">Setup Jenkins</a></li>
+        <li><a href="#setup-minikube-and-credentials">Setup Minikube and Credentials</a></li>
+        <li><a href="#configure-kubernetes-cloud-in-jenkins">Configure Kubernetes Cloud in Jenkins</a></li>
+      </ul>
+    </li>
+    <li><a href="#running-first-build-using-on-demand-agent-as-kubernetes-pod">Running First Build using On-Demand Agent as Kubernetes Pod</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="jenkins">Jenkins</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/jenkins-architecture.png"
+        data-srcset="/images/posts/post_4/jenkins-architecture.png, /images/posts/post_4/jenkins-architecture.png 1.5x, /images/posts/post_4/jenkins-architecture.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/jenkins-architecture.png"
+        title="Jenkins Architecture" /></p>
+<p>Jenkins is a server for automation that is free and open source. By automating the software development process, enterprises can save time and money. Jenkins is a tool that manages and controls software delivery processes across the whole lifecycle, including build, document, test, package, stage, deployment, static code analysis, and more.</p>
+<p>A typical Jenkins running in any organization looks like the above diagram. But there are multiple problems with the above architecture.</p>
+<ul>
+<li>Once you have set up the Agent it is continuously running and has acquired resources.</li>
+<li>If CI increases change you have to add additional agent and vice versa.</li>
+<li>If any new tool requirement comes; you have to add that tool into the existing agent or add a new agent with the tool installed in it.</li>
+</ul>
+<p>We can eliminate the above problems if we are using Kubernetes and use the existing cluster for our builds by integrating it with Jenkins. Then we can use on-demands agents as Kubernetes pods.</p>
+<h3 id="what-do-you-need">What Do You Need?</h3>
+<ul>
+<li>Docker</li>
+<li>Minikube</li>
+</ul>
+<h2 id="setting-up-environment">Setting Up Environment</h2>
+<h3 id="setup-jenkins">Setup Jenkins</h3>
+<p>Create a Jenkins instance by running the following command:</p>
+<pre tabindex="0"><code>$ docker run -d --name jenkins -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts
+</code></pre><p>Go to http://localhost:8080 and wait for the following screen to come:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/unlock-jenkins.png"
+        data-srcset="/images/posts/post_4/unlock-jenkins.png, /images/posts/post_4/unlock-jenkins.png 1.5x, /images/posts/post_4/unlock-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/unlock-jenkins.png"
+        title="Unlock Jenkins Screen" /></p>
+<p>Now run the following command to get the initial admin password from the Jenkins container:</p>
+<pre tabindex="0"><code>$ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+</code></pre><p>Now copy the output and paste it on the Jenkins UI.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/install-plugins-jenkins.png"
+        data-srcset="/images/posts/post_4/install-plugins-jenkins.png, /images/posts/post_4/install-plugins-jenkins.png 1.5x, /images/posts/post_4/install-plugins-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/install-plugins-jenkins.png"
+        title="Initial Install Plugins Jenkins Screen" /></p>
+<p>Select “Install suggested plugins” and wait for all plugins to install.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/getting-started-jenkins.png"
+        data-srcset="/images/posts/post_4/getting-started-jenkins.png, /images/posts/post_4/getting-started-jenkins.png 1.5x, /images/posts/post_4/getting-started-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/getting-started-jenkins.png"
+        title="Getting Started Jenkins Screen" /></p>
+<p>Fill in the user details.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/jenkins-up-and-running.png"
+        data-srcset="/images/posts/post_4/jenkins-up-and-running.png, /images/posts/post_4/jenkins-up-and-running.png 1.5x, /images/posts/post_4/jenkins-up-and-running.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/jenkins-up-and-running.png"
+        title="Jenkins Up and Running" /></p>
+<p>Now go to Manage Jenkins -&gt; Manage Plugins -&gt; Available. Search Kubernetes and select Kubernetes. Then click on Install without restart.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/kubernetes-plugin-jenkins.png"
+        data-srcset="/images/posts/post_4/kubernetes-plugin-jenkins.png, /images/posts/post_4/kubernetes-plugin-jenkins.png 1.5x, /images/posts/post_4/kubernetes-plugin-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/kubernetes-plugin-jenkins.png"
+        title="Kubernetes Plugin Jenkins" /></p>
+<p>Check “Restart Jenkins when installation is complete and no jobs are running” on the next page.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/restart-jenkins.png"
+        data-srcset="/images/posts/post_4/restart-jenkins.png, /images/posts/post_4/restart-jenkins.png 1.5x, /images/posts/post_4/restart-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/restart-jenkins.png"
+        title="Restart Jenkins" /></p>
+<p>We have our Jenkins up and running with the Kubernetes cloud plugin.</p>
+<h3 id="setup-minikube-and-credentials">Setup Minikube and Credentials</h3>
+<p>Start Minikube</p>
+<pre tabindex="0"><code>$ minikube start
+</code></pre><p>Create a namespace for Jenkins agents.</p>
+<pre tabindex="0"><code>$ kubectl create ns jenkins
+</code></pre><p>Open ~/.kube/config file. The contents of this file should look like something similar to the following:</p>
+<pre tabindex="0"><code>apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: ~/.minikube/ca.crt
+    extensions:
+    - extension:
+        last-update: Sat, 19 Dec 2021 22:20:16 PKT
+        provider: minikube.sigs.k8s.io
+        version: v1.20.0
+      name: cluster_info
+    server: https://192.168.99.103:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    extensions:
+    - extension:
+        last-update: Sat, 19 Dec 2021 22:20:16 PKT
+        provider: minikube.sigs.k8s.io
+        version: v1.20.0
+      name: context_info
+    namespace: default
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: ~/.minikube/profiles/minikube/client.crt
+    client-key: ~/.minikube/profiles/minikube/client.key
+</code></pre><p>Copy all the contents in a different file and replace certificate-authority, client-certificate, and client-key with certificate-authority-data, client-certificate-data, and client-key-data respectively. For values of these keys, we need base64 encoded data of the actual file reference. Repeat the following step for all three keys with their respective file and paste the output as a value.</p>
+<pre tabindex="0"><code>$ cat ~/.minikube/ca.crt | base64
+$ cat ~/.minikube/profiles/minikube/client.crt | base64
+$ cat ~/.minikube/profiles/minikube/client.key | base64
+</code></pre><p>The final file should look similar to the following file:</p>
+<pre tabindex="0"><code>apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: &lt;base64_encoded_string&gt;
+    extensions:
+    - extension:
+        last-update: Sat, 19 Dec 2021 22:20:16 PKT
+        provider: minikube.sigs.k8s.io
+        version: v1.20.0
+      name: cluster_info
+    server: https://192.168.99.103:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    extensions:
+    - extension:
+        last-update: Sat, 19 Dec 2021 22:20:16 PKT
+        provider: minikube.sigs.k8s.io
+        version: v1.20.0
+      name: context_info
+    namespace: default
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate-data: &lt;base64_encoded_string&gt;
+    client-key-data: &lt;base64_encoded_string&gt;
+</code></pre><p>Go to Manage Jenkins -&gt; Manage Credentials -&gt; Global credentials -&gt; Add Credentials. Select Kind as Secret file, Choose the file to upload we created earlier, give any ID e.g. minikube-kubeconfig. Hit OK to create.</p>
+<h3 id="configure-kubernetes-cloud-in-jenkins">Configure Kubernetes Cloud in Jenkins</h3>
+<p>Go to Manage Jenkins -&gt; Manage Node and Cloud -&gt; Configure Clouds -&gt; Add a new cloud -&gt; Kubernetes -&gt; Kubernetes Cloud Details.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/configure-kubernetes-cloud-jenkins.png"
+        data-srcset="/images/posts/post_4/configure-kubernetes-cloud-jenkins.png, /images/posts/post_4/configure-kubernetes-cloud-jenkins.png 1.5x, /images/posts/post_4/configure-kubernetes-cloud-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/configure-kubernetes-cloud-jenkins.png"
+        title="Configure Kubernetes Cloud jenkins" /></p>
+<p>Select Credentials created in the previous step and click Test Connection.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/kubernetes-cloud-connected-jenkins.png"
+        data-srcset="/images/posts/post_4/kubernetes-cloud-connected-jenkins.png, /images/posts/post_4/kubernetes-cloud-connected-jenkins.png 1.5x, /images/posts/post_4/kubernetes-cloud-connected-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/kubernetes-cloud-connected-jenkins.png"
+        title="Kubernetes Cloud Connected Jenkins" /></p>
+<p>Save cloud and add a new pod template for Jenkins agent default pod. Click on Pod template details… as follows:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/pod-template-jenkins.png"
+        data-srcset="/images/posts/post_4/pod-template-jenkins.png, /images/posts/post_4/pod-template-jenkins.png 1.5x, /images/posts/post_4/pod-template-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/pod-template-jenkins.png"
+        title="Pod Template Jenkins" /></p>
+<p>Hit Save.</p>
+<p>Go to Manage Jenkins -&gt; Configure System -&gt; Jenkins URL and put your private IP in there.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/jenkins-location.png"
+        data-srcset="/images/posts/post_4/jenkins-location.png, /images/posts/post_4/jenkins-location.png 1.5x, /images/posts/post_4/jenkins-location.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/jenkins-location.png"
+        title="Jenkins Location" /></p>
+<p>Hit Save.</p>
+<h2 id="running-first-build-using-on-demand-agent-as-kubernetes-pod">Running First Build using On-Demand Agent as Kubernetes Pod</h2>
+<p>Open Jenkins dashboard and create a new pipeline with following content:</p>
+<pre tabindex="0"><code>pipeline {
+    agent { label 'k8s-build-1' }
+    stages {
+        stage('Test Build') { 
+            steps {
+                println 'Hello World from Kubernetes Pod!'
+                sh 'hostname'
+            }
+        }
+    }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/pipeline-configuration-jenkins.png"
+        data-srcset="/images/posts/post_4/pipeline-configuration-jenkins.png, /images/posts/post_4/pipeline-configuration-jenkins.png 1.5x, /images/posts/post_4/pipeline-configuration-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/pipeline-configuration-jenkins.png"
+        title="Pipeline Configuration Jenkins" /></p>
+<p>Now run your first pipeline and check logs</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_4/pipeline-logs-jenkins.png"
+        data-srcset="/images/posts/post_4/pipeline-logs-jenkins.png, /images/posts/post_4/pipeline-logs-jenkins.png 1.5x, /images/posts/post_4/pipeline-logs-jenkins.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_4/pipeline-logs-jenkins.png"
+        title="Pipeline Logs Jenkins" /></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Currently, our Jenkins on-demand agent running as Kubernetes pod is using jenkins/inbound-agent:4.11–1-jdk11 image. We can create multiple customized images using this image as a base for our required needs and create multiple pod templates with different labels for different CI requirements.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/jenkins/">Jenkins</a>,&nbsp;<a href="/tags/kubernnetes/">Kubernnetes</a>,&nbsp;<a href="/tags/cicd/">CICD</a>,&nbsp;<a href="/tags/minikube/">Minikube</a>,&nbsp;<a href="/tags/automation/">Automation</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/post_3/" class="prev" rel="prev" title="Understand Autoscaling Applications In Kubernetes Before Next Peak Hours"><i class="fas fa-angle-left fa-fw"></i>Understand Autoscaling Applications In Kubernetes Before Next Peak Hours</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/t3hami" target="_blank">Muhammad Tehami</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

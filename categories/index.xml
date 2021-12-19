@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - Category - _T3hami&#39;s_Blog_</title>
+        <link>http://t3hami.github.io/categories/</link>
+        <description>Categories - Category - _T3hami&#39;s_Blog_</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>t3hami@gmail.com (Muhammad Tehami)</managingEditor>
+            <webMaster>t3hami@gmail.com (Muhammad Tehami)</webMaster><lastBuildDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</lastBuildDate><atom:link href="http://t3hami.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>DevOps</title>
+    <link>http://t3hami.github.io/categories/devops/</link>
+    <pubDate>Sun, 19 Dec 2021 01:14:26 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/categories/devops/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Security</title>
+    <link>http://t3hami.github.io/categories/security/</link>
+    <pubDate>Sat, 27 Feb 2021 01:48:27 &#43;0500</pubDate>
+    <author>Author</author>
+    <guid>http://t3hami.github.io/categories/security/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>

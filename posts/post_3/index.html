@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Understand Autoscaling Applications In Kubernetes Before Next Peak Hours - _T3hami&#39;s_Blog_</title><meta name="Description" content=""><meta property="og:title" content="Understand Autoscaling Applications In Kubernetes Before Next Peak Hours" />
+<meta property="og:description" content="What is Autoscaling? Automatic scaling, is a cloud computing strategy that dynamically modifies the amount of computational resources required for an application. Normally measured by the number of active servers based on the load on the farm. For example, the number of servers hosting a web application can automatically increase or decrease based on the number of active users on your site. Because such metrics can fluctuate substantially during the day, and servers are a limited resource that cost money to run even when inactive, there is often an incentive to run “just enough” servers to support the current demand while still being able to handle sudden and large surges in activity." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://t3hami.github.io/posts/post_3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-07T23:20:15+05:00" />
+<meta property="article:modified_time" content="2021-12-07T23:20:15+05:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Understand Autoscaling Applications In Kubernetes Before Next Peak Hours"/>
+<meta name="twitter:description" content="What is Autoscaling? Automatic scaling, is a cloud computing strategy that dynamically modifies the amount of computational resources required for an application. Normally measured by the number of active servers based on the load on the farm. For example, the number of servers hosting a web application can automatically increase or decrease based on the number of active users on your site. Because such metrics can fluctuate substantially during the day, and servers are a limited resource that cost money to run even when inactive, there is often an incentive to run “just enough” servers to support the current demand while still being able to handle sudden and large surges in activity."/>
+<meta name="application-name" content="_T3hami&#39;s_Blog_">
+<meta name="apple-mobile-web-app-title" content="_T3hami&#39;s_Blog_"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://t3hami.github.io/posts/post_3/" /><link rel="prev" href="http://t3hami.github.io/posts/post_2/" /><link rel="next" href="http://t3hami.github.io/posts/post_4/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Understand Autoscaling Applications In Kubernetes Before Next Peak Hours",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/t3hami.github.io\/posts\/post_3\/"
+        },"genre": "posts","keywords": "Kubernnetes, Cloud Computing, Autoscaling, Metrics Server, Nginx","wordcount":  1287 ,
+        "url": "http:\/\/t3hami.github.io\/posts\/post_3\/","datePublished": "2021-12-07T23:20:15+05:00","dateModified": "2021-12-07T23:20:15+05:00","publisher": {
+            "@type": "Organization",
+            "name": "Muhammad Tehami"},"author": {
+                "@type": "Person",
+                "name": "Muhammad Tehami"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_T3hami&#39;s_Blog_">_T3hami&#39;s_Blog_</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_T3hami&#39;s_Blog_">_T3hami&#39;s_Blog_</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Understand Autoscaling Applications In Kubernetes Before Next Peak Hours</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/t3hami" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Muhammad Tehami</a></span>&nbsp;<span class="post-category">included in <a href="/categories/devops/"><i class="far fa-folder fa-fw"></i>DevOps</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-07">2021-12-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1287 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-autoscaling">What is Autoscaling?</a></li>
+    <li><a href="#setting-up-environment">Setting Up Environment</a>
+      <ul>
+        <li><a href="#minikube">Minikube</a></li>
+        <li><a href="#kubectl">Kubectl</a></li>
+      </ul>
+    </li>
+    <li><a href="#deploying-nginx-server-on-kubernetes">Deploying Nginx Server on Kubernetes</a></li>
+    <li><a href="#autoscaling-with-kubernetes-metric-server">Autoscaling with Kubernetes Metric Server</a>
+      <ul>
+        <li><a href="#installing-metric-server">Installing Metric Server</a></li>
+        <li><a href="#creating-load-with-apache-bench">Creating Load With Apache Bench</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="what-is-autoscaling">What is Autoscaling?</h2>
+<p>Automatic scaling, is a cloud computing strategy that dynamically modifies the amount of computational resources required for an application. Normally measured by the number of active servers based on the load on the farm. For example, the number of servers hosting a web application can automatically increase or decrease based on the number of active users on your site. Because such metrics can fluctuate substantially during the day, and servers are a limited resource that cost money to run even when inactive, there is often an incentive to run “just enough” servers to support the current demand while still being able to handle sudden and large surges in activity. Autoscaling is useful for such situations because it may reduce the number of active servers when activity is low, and it can also increase the number of active servers when activity is high.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_3/how-the-autoscaling-system-works.gif"
+        data-srcset="/images/posts/post_3/how-the-autoscaling-system-works.gif, /images/posts/post_3/how-the-autoscaling-system-works.gif 1.5x, /images/posts/post_3/how-the-autoscaling-system-works.gif 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_3/how-the-autoscaling-system-works.gif"
+        title="How the Autoscaling System Works" /></p>
+<p>Before moving ahead to deploy our application on Kubernetes and Autoscale it, there are a couple of terms we need to be familiar with.</p>
+<ul>
+<li><strong>Instance:</strong> A single server or machine that is in itself is an independent unit or we can say microservice.
+Autoscaling Group: The set of instances that are subject to autoscaling, as well as all associated policies and state data.</li>
+<li><strong>Size:</strong> The number of instances in the autoscaling group at the moment.</li>
+<li><strong>Desired Size:</strong> At any given time, the number of instances that the autoscaling group should have. The autoscaling group will try to launch (provision and attach) new instances if the size is less than the intended size. The autoscaling group will try to eliminate (detach and terminate) instances if the size exceeds the specified size.</li>
+<li><strong>Minimum Size:</strong> The number of instance from which the targeted capacity is not allowed to go below.</li>
+<li><strong>Maximum Size:</strong> The number of instance from which the targeted capacity is not allowed to go beyond.</li>
+<li><strong>Metric:</strong> A measurement connected with the autoscaling group for which a time series of data points is created on a regular basis (such as CPU use, memory consumption, and network usage). Metric thresholds can be used to create autoscaling policies.</li>
+<li><strong>Autoscaling Policy:</strong> In response to metrics reaching particular thresholds, a policy that specifies a modification to the autoscaling group’s targeted capacity (or, in some cases, its minimum and maximum size). Cooldown periods can be connected with scaling policies, preventing future scaling actions from occurring shortly after one. Changes to intended capacity could be incremental (increasing or decreasing by a specified number) or give a new desired capacity value. Policies that enhance desired capacity are referred to as “scaling out” or “scaling up,” while policies that reduce desired capacity are referred to as “scaling in” or “scaling down”.</li>
+<li><strong>Vertical Scaling:</strong> Vertical scaling preserves your current infrastructure while increasing processing power. All you have to do is run it on an existing number of machines but with improved specs. By scaling up, you can improve the capacity and throughput of a single system. .</li>
+<li><strong>Horizontal Scaling:</strong> Horizontal scaling increases the number of machine instances without improving the existing specs. Scale out to distribute processing power and load balancing across multiple servers.</li>
+</ul>
+<p>We will mainly focus on Horizontal Scaling in this article.</p>
+<h2 id="setting-up-environment">Setting Up Environment</h2>
+<h3 id="minikube">Minikube</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_3/minikube.png"
+        data-srcset="/images/posts/post_3/minikube.png, /images/posts/post_3/minikube.png 1.5x, /images/posts/post_3/minikube.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_3/minikube.png"
+        title="Minikube Logo" /></p>
+<p>Minikube is a local Kubernetes that focuses on making Kubernetes easy to learn and develop locally. Kubernetes is only a single command away if you have Docker (or similarly compatible) container tooling or a Virtual Machine environment. Head to the following docs: <a href="https://minikube.sigs.k8s.io/docs/start/" target="_blank" rel="noopener noreffer">https://minikube.sigs.k8s.io/docs/start/</a></p>
+<h3 id="kubectl">Kubectl</h3>
+<p>Kubernetes clusters can be managed through the kubectl command line tool.
+<a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/" target="_blank" rel="noopener noreffer">https://minikube.sigs.k8s.io/docs/handbook/kubectl/</a></p>
+<p>Now we have minikube and kubectl to control our cluster from cli let’s start our very first Kubernetes Cluster:</p>
+<pre tabindex="0"><code>$ minikube start
+</code></pre><h2 id="deploying-nginx-server-on-kubernetes">Deploying Nginx Server on Kubernetes</h2>
+<p>Let’s deploy an application on Kubernetes. For the demo purpose we are using the most simplest of the deployment; an Nginx server.</p>
+<p>Create autoscale namespace.</p>
+<pre tabindex="0"><code>$ kubectl create ns autoscale
+</code></pre><p>Create nginx-deployment.yaml file with following content:</p>
+<pre tabindex="0"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: autoscale
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 100Mi
+          limits:
+            cpu: 300m
+            memory: 150Mi
+</code></pre><p>Create deployment</p>
+<pre tabindex="0"><code>$ kubectl apply -f nginx-deployment.yaml
+</code></pre><p>Now we have to expose our application using NodePort service. Create nginx-service.yaml file with following content:</p>
+<pre tabindex="0"><code>apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: autoscale
+  labels:
+    app: nginx
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    nodePort: 31934
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: nginx
+</code></pre><p>Create service</p>
+<pre tabindex="0"><code>$ kubectl apply -f nginx-service.yaml
+</code></pre><p>Verify the Nginx server started and can be accessed using configured Node Port</p>
+<pre tabindex="0"><code>$ curl http://`minikube ip`:31934
+</code></pre><p>We have successfully deployed a Nginx server on our Kubernetes Cluster. Now the problem is if our application starts getting a lot of traffic it’s performance will start to decline as there is only one replica(instance) of our deployment(application) running in the cluster. We can manually update the number of replicas in our deployment before peak hours but then it will be unnecessary use of resources during the time there is very less traffic.</p>
+<h2 id="autoscaling-with-kubernetes-metric-server">Autoscaling with Kubernetes Metric Server</h2>
+<p>For Kubernetes built-in autoscaling pipelines, Metrics Server offers a scalable and efficient source of container resource metrics.</p>
+<p>The Metrics API in the Kubernetes apiserver collects resource metrics from Kubelet and makes them available to Horizontal Pod Autoscaler and Vertical Pod Autoscaler. kubectl top may also access the metrics API.</p>
+<h3 id="installing-metric-server">Installing Metric Server</h3>
+<p>By default there is no metric server installed in Cluster created by Minikube. Install the metric server using the following command:</p>
+<pre tabindex="0"><code>$ minikube addons disable heapster
+$ minikube addons enable metrics-server
+</code></pre><p><em>Note</em>: Use following Helm Chart to install Metric Server if you are not using Minikube: <a href="https://github.com/kubernetes-sigs/metrics-server/tree/master/charts/metrics-server" target="_blank" rel="noopener noreffer">https://github.com/kubernetes-sigs/metrics-server/tree/master/charts/metrics-server</a></p>
+<p>Validate Metric Server is running</p>
+<pre tabindex="0"><code>$ kubectl get po -n kube-system
+NAME                              READY   STATUS       RESTARTS  AGE
+coredns-74ff55c5b-x42f6           1/1     Running       0         1d
+etcd-minikube                     1/1     Running       0         1d
+kube-apiserver-minikube           1/1     Running       0         1d
+kube-controller-manager-minikube  1/1     Running       0         1d
+kube-proxy-k87m2                  1/1     Running       0         1d
+kube-scheduler-minikube           1/1     Running       0         1d
+metrics-server-7894db45f8-wxzqd   1/1     Running       0         3m
+storage-provisioner               1/1     Running       0         1d
+</code></pre><p>Create nginx-autoscale.yaml with following content</p>
+<pre tabindex="0"><code>apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx-autoscale
+  namespace: autoscale
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deployment
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+</code></pre><p>Now create Horizontal Pod Autoscaler</p>
+<pre tabindex="0"><code>$ kubectl apply -f nginx-autoscale.yaml
+</code></pre><p>Check current metrics</p>
+<pre tabindex="0"><code>$ kubectl top pod -n autoscale
+NAME                                CPU(cores)   MEMORY(bytes)
+nginx-deployment-67459f4f86-6hq6g   0m           2Mi
+</code></pre><p>There is only one pod running which is very obvious as we can see there’s no traffic currently coming to the Nginx server.</p>
+<h3 id="creating-load-with-apache-bench">Creating Load With Apache Bench</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/posts/post_3/apache-bench.png"
+        data-srcset="/images/posts/post_3/apache-bench.png, /images/posts/post_3/apache-bench.png 1.5x, /images/posts/post_3/apache-bench.png 2x"
+        data-sizes="auto"
+        alt="/images/posts/post_3/apache-bench.png"
+        title="Apache Bench Logo" /></p>
+<p>The Apache Bench(ab) is a load testing and benchmarking tool for HTTP servers. It’s easy to use and may be started from the terminal. Install for your platform: <a href="https://httpd.apache.org/docs/2.4/programs/ab.html" target="_blank" rel="noopener noreffer">https://httpd.apache.org/docs/2.4/programs/ab.html</a></p>
+<p>Verify that you have it working by checking Apache Bench version.</p>
+<pre tabindex="0"><code>$ ab -V
+</code></pre><p>Now open two terminals</p>
+<p>1st terminal to monitor pods and their resource usage</p>
+<pre tabindex="0"><code>$ watch kubectl top pod -n autoscale
+</code></pre><p>2nd terminal to send load to Nginx using Apache Bench. Here we are sending a total of 200000 requests and 200 concurrent requests. This will generate enough load to increase CPU utilization above 50%.</p>
+<pre tabindex="0"><code>ab -n 200000 -c 200 http://`minikube ip`:31934/
+</code></pre><p>Soon you will see the surge in resource usage and pods getting autoscale. In my machine the number of pods increased to 4.</p>
+<pre tabindex="0"><code>$ NAME                                CPU(cores)   MEMORY(bytes)
+nginx-deployment-67459f4f86-6hq6g   139m         2Mi
+nginx-deployment-67459f4f86-h6f5m   116m         2Mi
+nginx-deployment-67459f4f86-jt66v   52m          2Mi
+nginx-deployment-67459f4f86-x55gv   56m          2Mi
+</code></pre><p>Once all requests are completed the pods will downscale to 1 again.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Kubernetes Horizontal Autoscaling takes care of up scaling and down scaling pods based on the resource usage metrics specified. It eliminates the need of manually changing the configuration to meet the current resource usage demand.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kubernnetes/">Kubernnetes</a>,&nbsp;<a href="/tags/cloud-computing/">Cloud Computing</a>,&nbsp;<a href="/tags/autoscaling/">Autoscaling</a>,&nbsp;<a href="/tags/metrics-server/">Metrics Server</a>,&nbsp;<a href="/tags/nginx/">Nginx</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/post_2/" class="prev" rel="prev" title="Signing Git Commits with GPG"><i class="fas fa-angle-left fa-fw"></i>Signing Git Commits with GPG</a>
+            <a href="/posts/post_4/" class="next" rel="next" title="Jenkins On-Demand Agents">Jenkins On-Demand Agents<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/t3hami" target="_blank">Muhammad Tehami</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
