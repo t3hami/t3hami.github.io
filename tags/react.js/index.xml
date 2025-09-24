@@ -1,16 +1,5 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>React.js - Tag - _T3hami&#39;s_Blog_</title>
-        <link>http://t3hami.github.io/tags/react.js/</link>
-        <description>React.js - Tag - _T3hami&#39;s_Blog_</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>t3hami@gmail.com (Muhammad Tehami)</managingEditor>
-            <webMaster>t3hami@gmail.com (Muhammad Tehami)</webMaster><lastBuildDate>Sun, 08 Nov 2020 00:08:37 &#43;0500</lastBuildDate><atom:link href="http://t3hami.github.io/tags/react.js/" rel="self" type="application/rss+xml" /><item>
-    <title>React.js DevOps Ready Application</title>
-    <link>http://t3hami.github.io/posts/post_1/</link>
-    <pubDate>Sun, 08 Nov 2020 00:08:37 &#43;0500</pubDate>
-    <author>Author</author>
-    <guid>http://t3hami.github.io/posts/post_1/</guid>
-    <description><![CDATA[Overview Shipping your application in containers is a new norm and CI/CD is also a must have in today’s development. Here I’ve created a React.js DevOps ready application for reference of those who are new to Containers and CI/CD.
-Docker Docker is for managing container. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and deploy it as one package.]]></description>
-</item></channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>React.js on Tehami's Blog</title><link>http://t3hami.github.io/tags/react.js/</link><description>Recent content in React.js on Tehami's Blog</description><generator>Hugo -- 0.150.0</generator><language>en-us</language><managingEditor>t3hami [at] gmail [dot] com (Muhammad Tehami)</managingEditor><webMaster>t3hami [at] gmail [dot] com (Muhammad Tehami)</webMaster><lastBuildDate>Sun, 08 Nov 2020 00:08:37 +0500</lastBuildDate><atom:link href="http://t3hami.github.io/tags/react.js/index.xml" rel="self" type="application/rss+xml"/><item><title>React.js DevOps Ready Application</title><link>http://t3hami.github.io/tech/post_1/</link><pubDate>Sun, 08 Nov 2020 00:08:37 +0500</pubDate><author>t3hami [at] gmail [dot] com (Muhammad Tehami)</author><guid>http://t3hami.github.io/tech/post_1/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Shipping your application in containers is a new norm and CI/CD is also a must have in today’s development. Here I’ve created a React.js DevOps ready application for reference of those who are new to Containers and CI/CD.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Docker Nginx React.js" loading="lazy" src="http://t3hami.github.io/images/posts/post_1/docker-nginx-react.png"&gt;&lt;/p&gt;
+&lt;h3 id="docker"&gt;Docker&lt;/h3&gt;
+&lt;p&gt;Docker is for managing container. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and deploy it as one package.&lt;/p&gt;</description></item></channel></rss>
